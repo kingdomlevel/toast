@@ -1,8 +1,13 @@
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import HomeContainer from './components/home/HomeContainer';
+
 function App() {
   return (
-    <div className="App">
-      <p> hellooooo from toast! </p>
-    </div>
+    <Router>
+      <Route exact path="/">
+        <HomeContainer/>
+      </Route>
+    </Router>
   );
 }
 
