@@ -1,12 +1,18 @@
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import HomeContainer from './components/home/HomeContainer';
+import Rules from './components/home/Rules';
 
 function App() {
   return (
     <Router>
-      <Route exact path="/">
-        <HomeContainer/>
-      </Route>
+      <Switch>
+        <Route exact path="/">
+          <HomeContainer />
+        </Route>
+        <Route path="/rules">
+          <Rules />
+        </Route>
+      </Switch>
     </Router>
   );
 }
