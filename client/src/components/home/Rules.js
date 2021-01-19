@@ -3,7 +3,7 @@ function Rules() {
 
   return (
     <div>
-      <p>The rules are the rules and you should always follow the rules.</p>
+      <p>The rules are the rules and you should always follow the rules. Very big rules.</p>
       <Link to="/">
         <button>Back</button>
       </Link>
