@@ -1,8 +1,19 @@
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import HomeContainer from './components/home/HomeContainer';
+import Rules from './components/home/Rules';
+
 function App() {
   return (
-    <div className="App">
-      <p> hellooooo from toast! </p>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <HomeContainer />
+        </Route>
+        <Route path="/rules">
+          <Rules />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
