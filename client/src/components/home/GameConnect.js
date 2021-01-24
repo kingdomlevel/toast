@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 const randomWords = require('random-words');
 
-function GameConnect() {
+function GameConnect({history}) {
   const [gameCode, setGameCode] = useState("");
 
   const handleGameCodeChange = event => setGameCode(event.target.value)
@@ -9,6 +9,7 @@ function GameConnect() {
   const generateGameCode = event => {
     event.preventDefault();
 
+    // generate new gameCode
     const [newGameCode] = randomWords({
       exactly: 1,
       wordsPerString: 2,
@@ -17,13 +18,15 @@ function GameConnect() {
 
     setGameCode(newGameCode);
 
+    // direct user to new room
+    history.push(`/${newGameCode}`)
+
   }
 
   const handleGameCodeSubmit = event => {
     event.preventDefault();
     console.log("Joining game: " + gameCode)
   }
-
 
   return (
     <div>
