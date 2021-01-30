@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
-const randomWords = require('random-words');
+import {generateGameCode} from '../../utils/randomWords';
 
 function GameConnect({history}) {
   const [gameCode, setGameCode] = useState("");
 
   const handleGameCodeChange = event => setGameCode(event.target.value)
 
-  const generateGameCode = event => {
+  const createGame = event => {
     event.preventDefault();
 
-    // generate new gameCode
-    const [newGameCode] = randomWords({
-      exactly: 1,
-      wordsPerString: 2,
-      separator:'-'
-    });
+    const newGameCode = generateGameCode();
 
     setGameCode(newGameCode);
 
@@ -33,7 +28,7 @@ function GameConnect({history}) {
 
   return (
     <div>
-      <form onSubmit={generateGameCode}>
+      <form onSubmit={createGame}>
         <input
           type="submit"
           value="Create Game"
