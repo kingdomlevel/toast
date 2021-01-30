@@ -19,7 +19,10 @@ function GameConnect({history}) {
     setGameCode(newGameCode);
 
     // direct user to new room
-    history.push(`/${newGameCode}`)
+    history.push({
+      pathname: `/${newGameCode}`,
+      state: {isHost: true}
+    })
 
   }
 
@@ -31,10 +34,10 @@ function GameConnect({history}) {
   return (
     <div>
       <form onSubmit={generateGameCode}>
-      <input
-        type="submit"
-        value="Create Game"
-      />
+        <input
+          type="submit"
+          value="Create Game"
+        />
       </form>
 
       <form onSubmit={handleGameCodeSubmit}>
