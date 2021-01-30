@@ -1,8 +1,4 @@
-// mongodb seeds go here
-use toast;
-db.dropDatabase();
-
-const tunes = [
+[
   {
     "title": "Amazing Grace",
     "artist": "",
@@ -57,6 +53,4 @@ const tunes = [
     "difficulty": 3,
     "isThemeTune": true
   }
-];
-
-db.tunes.insertMany(tunes);
+]
