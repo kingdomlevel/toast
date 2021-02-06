@@ -33,7 +33,7 @@ io.on('connection', socket => {
     // this gets an array of Player objects in the game
     //... i think this will be useful at some point (when adding a new player, return these to client?)
     const roomClients = allRooms[gameCode].clients;
-    console.log(roomClients);
+    console.log(`room ${gameCode}: `, roomClients);
   })
 });
 
