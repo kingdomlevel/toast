@@ -1,7 +1,25 @@
+import styled from 'styled-components';
+
+const Title = styled.h1`
+  font-size: 10vw;
+  font-family: monospace;
+
+`;
+
+const TitleContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+
 function AppTitle() {
 
   return (
-    <h1>Toasty Tunes</h1>
+    <>
+    <TitleContainer>
+    <Title>Toasty Tunes</Title>
+    </TitleContainer>
+    </>
   )
 
 }
