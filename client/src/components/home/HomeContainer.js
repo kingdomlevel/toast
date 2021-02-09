@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import AppTitle from './AppTitle';
 import GameConnect from './GameConnect';
 
-function HomeContainer() {
+function HomeContainer({history}) {
 
   return (
     <div>
@@ -10,7 +10,7 @@ function HomeContainer() {
       <Link to="/rules">
         <button>Rules</button>
       </Link>
-      <GameConnect />
+      <GameConnect history={history}/>
     </div>
   );
 
