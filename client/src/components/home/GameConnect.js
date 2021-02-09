@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
+import {generateGameCode} from '../../utils/randomWords';
 
-function GameConnect() {
+function GameConnect({history}) {
   const [gameCode, setGameCode] = useState("");
 
   const handleGameCodeChange = event => setGameCode(event.target.value)
+
+  const createGame = event => {
+    event.preventDefault();
+
+    const newGameCode = generateGameCode();
+
+    setGameCode(newGameCode);
+
+    // direct user to new room
+    history.push({
+      pathname: `/${newGameCode}`,
+      state: {isHost: true}
+    })
+
+  }
 
   const handleGameCodeSubmit = event => {
     event.preventDefault();
@@ -12,11 +28,11 @@ function GameConnect() {
 
   return (
     <div>
-      <form>
-      <input
-        type="submit"
-        value="Create Game"
-      />
+      <form onSubmit={createGame}>
+        <input
+          type="submit"
+          value="Create Game"
+        />
       </form>
 
       <form onSubmit={handleGameCodeSubmit}>
