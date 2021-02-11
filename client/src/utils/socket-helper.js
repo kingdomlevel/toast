@@ -34,7 +34,7 @@ export const listenForJoinConfirmation = (gameCode, next) => {
   socket.on('join-confirmation', roomDeets => {
     roomDeets["gameCode "] = gameCode;
     localStorage.setItem(`room-${gameCode}`, JSON.stringify(roomDeets));
-    debugger;
+
     next(roomDeets);
   });
 }
