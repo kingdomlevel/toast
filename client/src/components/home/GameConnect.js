@@ -61,9 +61,7 @@ function GameConnect({history}) {
   return (
     <>
       <Form onSubmit={createGame}>
-      <CreateGameButton type="submit">
-        Create Game
-      </CreateGameButton>
+      <CreateGameButton type="submit" value='Create Game' />
       </Form>
 
       <Form onSubmit={handleGameCodeSubmit}>
@@ -75,7 +73,7 @@ function GameConnect({history}) {
             onChange={handleGameCodeChange} 
         />
         </GameCodeLabel>
-        <CreateGameButton type="submit">Join Game</CreateGameButton>
+        <CreateGameButton type="submit" value="Join Game" />
       </Form>
     </>
   )
