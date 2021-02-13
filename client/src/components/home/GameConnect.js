@@ -21,12 +21,14 @@ function GameConnect({history}) {
 
   }
 
+  //join an existing game
   const handleGameCodeSubmit = event => {
     event.preventDefault();
     console.log("Joining game: " + gameCode)
     history.push({
       pathname: `/${gameCode}`,
       state: {isHost: false}
+
     })
   }
 
