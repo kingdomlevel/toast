@@ -27,8 +27,8 @@ io.on('connection', socket => {
   const socketRooms = io.sockets.adapter.rooms;
 
   socket.on('join', newConnection => {
-    const {gameCode} = newConnection;
-
+    const {gameCode, nickname, isHost} = newConnection;
+    
     socket.join(gameCode);
     const clientsInRoom = socketRooms.get(gameCode);
     
@@ -37,13 +37,18 @@ io.on('connection', socket => {
       allRooms[gameCode] = new Room(gameCode);
     }
     
-    const newClient = new Player(socket.id, newConnection.nickname);
+    const newClient = new Player(socket.id, nickname, isHost);
     allRooms[gameCode].addClient(newClient);
     
     // this gets an array of Player objects in the game
     //... i think this will be useful at some point (when adding a new player, return these to client?)
     const roomClients = allRooms[gameCode].clients;
-    console.log(`room ${gameCode}: `, roomClients);
+
+    // respond to client on "connected"
+    socket.emit("join-confirmation", {
+      socketId: socket.id,
+      roomClients
+    })
   })
 });
 

@@ -21,7 +21,16 @@ function App() {
         </Route>
         <Route path={`/${roomCode}`} render={({location}) => {
           const attemptedCode = location.pathname.substring(1);    // strip leading slash from path
-          const isHost = location.state ? location.state.isHost : false;
+          
+          let isHost = false;
+          
+          if (location.state) {
+            isHost = location.state.isHost;
+          } else if (localStorage.getItem(`room-${attemptedCode}`)) {
+            const roomDeets = JSON.parse(localStorage.getItem(`room-${attemptedCode}`));
+            isHost = roomDeets.roomClients[roomDeets.socketId].isHost;
+          }
+
           return (
             <RoomContainer
               roomCode={attemptedCode}

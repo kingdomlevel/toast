@@ -28,6 +28,17 @@ export const initSocket = (gameCode, nickname, isHost) => {
   }
 };
 
+export const listenForJoinConfirmation = (gameCode, next) => {
+  if (!socket) return;
+
+  socket.on('join-confirmation', roomDeets => {
+    roomDeets["gameCode "] = gameCode;
+    localStorage.setItem(`room-${gameCode}`, JSON.stringify(roomDeets));
+
+    next(roomDeets);
+  });
+}
+
 export const disconnectSocket = () => {
   if (socket) {
     socket.disconnect();
