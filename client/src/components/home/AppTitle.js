@@ -2,9 +2,13 @@ import styled from 'styled-components';
 
 const Title = styled.h1`
   font-size: 10vw;
-  font-family: monospace;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: #f5e960;
 
+`;
+
+const TitleTitleContainer = styled.div`
+  width: 100%;
 `;
 
 const TitlePic = styled.img`
@@ -21,10 +25,13 @@ function AppTitle() {
 
   return (
     <>
+    <TitleTitleContainer>
     <TitleContainer>
     <TitlePic src={'./toot-toot-person.png'} />
     <Title>Toasty Tunes</Title>
     </TitleContainer>
+
+    </TitleTitleContainer>
     </>
   )
 

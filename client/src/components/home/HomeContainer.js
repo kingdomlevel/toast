@@ -8,6 +8,18 @@ const RuleContainer = styled.div`
   justify-content: center;
 `;
 
+const RuleButton = styled.button`
+  font-weight: 600;
+  margin: 10px;
+  width: 100px;
+  border: none;
+  color: #FF7B9C;
+  background-color: #41EAD4;
+  border-radius: 30px;
+  padding: 5px;
+  
+`;
+
 function HomeContainer() {
 
   return (
@@ -15,7 +27,7 @@ function HomeContainer() {
       <AppTitle />
       <RuleContainer>
       <Link to="/rules">
-        <button>Rules</button>
+        <RuleButton>Rules</RuleButton>
       </Link>
       </RuleContainer>
       <GameConnect />

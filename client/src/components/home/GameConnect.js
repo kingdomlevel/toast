@@ -6,6 +6,26 @@ const Form = styled.form`
   justify-content: center;
 `;
 
+const CreateGameButton = styled.button`
+  font-weight: 600;
+  margin: 10px;
+  width: 100px;
+  border: none;
+  color: #FF7B9C;
+  background-color: #41EAD4;
+  border-radius: 30px;
+  padding: 5px;
+`;
+
+const StyledInput = styled.input`
+  width: 200px;
+  height: 20px;
+  margin: 10px;
+  border-radius: 20px;
+  border: none;
+  background-color: #f8edeb; 
+`;
+
 const GameCodeLabel = styled.label`
   font-size: 20px;
   color: #FF7B9C;
@@ -25,25 +45,21 @@ function GameConnect() {
   return (
     <>
       <Form>
-      <input
-        type="submit"
-        value="Create Game"
-      />
+      <CreateGameButton type="submit">
+        Create Game
+      </CreateGameButton>
       </Form>
 
       <Form onSubmit={handleGameCodeSubmit}>
         <GameCodeLabel>
           Enter Game Code:
-        <input
+        <StyledInput
             type="text"
             value={gameCode}
             onChange={handleGameCodeChange} 
         />
         </GameCodeLabel>
-        <input
-          type="submit"
-          value="Join Game" 
-        />
+        <CreateGameButton type="submit">Join Game</CreateGameButton>
       </Form>
     </>
   )
