@@ -20,7 +20,7 @@ const RuleButton = styled.button`
   
 `;
 
-function HomeContainer() {
+function HomeContainer({history}) {
 
   return (
     <>
@@ -29,8 +29,8 @@ function HomeContainer() {
       <Link to="/rules">
         <RuleButton>Rules</RuleButton>
       </Link>
-      </RuleContainer>
-      <GameConnect />
+      </RuleContainer >
+      <GameConnect history={history}/>
     </>
   );
 

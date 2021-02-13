@@ -1,3 +1,4 @@
+import {generateGameCode} from '../../utils/randomWords';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -6,7 +7,7 @@ const Form = styled.form`
   justify-content: center;
 `;
 
-const CreateGameButton = styled.button`
+const CreateGameButton = styled.input`
   font-weight: 600;
   margin: 10px;
   width: 100px;
@@ -32,10 +33,25 @@ const GameCodeLabel = styled.label`
   font-weight: 600;
 `;
 
-function GameConnect() {
+function GameConnect({history}) {
   const [gameCode, setGameCode] = useState("");
 
   const handleGameCodeChange = event => setGameCode(event.target.value)
+
+  const createGame = event => {
+    event.preventDefault();
+
+    const newGameCode = generateGameCode();
+
+    setGameCode(newGameCode);
+
+    // direct user to new room
+    history.push({
+      pathname: `/${newGameCode}`,
+      state: {isHost: true}
+    })
+
+  }
 
   const handleGameCodeSubmit = event => {
     event.preventDefault();
@@ -44,7 +60,7 @@ function GameConnect() {
 
   return (
     <>
-      <Form>
+      <Form onSubmit={createGame}>
       <CreateGameButton type="submit">
         Create Game
       </CreateGameButton>
