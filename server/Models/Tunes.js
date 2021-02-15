@@ -9,7 +9,7 @@ const tuneSchema = new mongoose.Schema({
     },
     artist: {
         type: String,
-        required: true
+        required: false
     },
     difficulty: {
         type: Number,
@@ -17,7 +17,7 @@ const tuneSchema = new mongoose.Schema({
     },
     isThemeTune: {
         type: Boolean,
-        required: true
+        required: false
     }
 });
 
