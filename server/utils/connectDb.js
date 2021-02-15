@@ -10,7 +10,6 @@ async function connectDb() {
     }
 
     const db = await mongoose.connect(process.env.MONGO_SRV, {
-        uri: '',
         useCreateIndex: true, 
         useFindAndModify: false,
         useNewUrlParser: true,
