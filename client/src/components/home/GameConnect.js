@@ -1,5 +1,37 @@
-import React, { useState } from 'react';
 import {generateGameCode} from '../../utils/randomWords';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+
+const Form = styled.form`
+  display: flex;
+  justify-content: center;
+`;
+
+const CreateGameButton = styled.input`
+  font-weight: 600;
+  margin: 10px;
+  width: 100px;
+  border: none;
+  color: #FF7B9C;
+  background-color: #41EAD4;
+  border-radius: 30px;
+  padding: 5px;
+`;
+
+const StyledInput = styled.input`
+  width: 200px;
+  height: 20px;
+  margin: 10px;
+  border-radius: 20px;
+  border: none;
+  background-color: #f8edeb; 
+`;
+
+const GameCodeLabel = styled.label`
+  font-size: 20px;
+  color: #FF7B9C;
+  font-weight: 600;
+`;
 
 function GameConnect({history}) {
   const [gameCode, setGameCode] = useState("");
@@ -27,29 +59,23 @@ function GameConnect({history}) {
   }
 
   return (
-    <div>
-      <form onSubmit={createGame}>
-        <input
-          type="submit"
-          value="Create Game"
-        />
-      </form>
+    <>
+      <Form onSubmit={createGame}>
+      <CreateGameButton type="submit" value='Create Game' />
+      </Form>
 
-      <form onSubmit={handleGameCodeSubmit}>
-        <label>
+      <Form onSubmit={handleGameCodeSubmit}>
+        <GameCodeLabel>
           Enter Game Code:
-        <input
+        <StyledInput
             type="text"
             value={gameCode}
             onChange={handleGameCodeChange} 
         />
-        </label>
-        <input
-          type="submit"
-          value="Join Game" 
-        />
-      </form>
-    </div>
+        </GameCodeLabel>
+        <CreateGameButton type="submit" value="Join Game" />
+      </Form>
+    </>
   )
 
 }
