@@ -23,7 +23,7 @@ const RoomContainer = ({roomCode, isHost}) => {
       listenForJoinConfirmation(roomCode, roomDeets => {
         console.log('roomDeets: ', roomDeets);
       });
-      
+
     } else {
       // client already in room
       const roomDeets = JSON.parse(localStorage.getItem(`room-${roomCode}`));
@@ -37,7 +37,10 @@ const RoomContainer = ({roomCode, isHost}) => {
   if (redirect) {
     return <Redirect to={{
       pathname: "/",
-      state: roomCode
+      state: {
+        noRoom: roomCode,
+        isHost: false
+      }
     }} />
   }
 
