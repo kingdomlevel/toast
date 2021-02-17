@@ -22,6 +22,12 @@ connectDb().then(() => {
     socket.on('join', newConnection => {
       const { gameCode, nickname, isHost } = newConnection;
 
+      if (!socketRooms.get(gameCode) && !isHost) {
+        // client is trying to access a room that does not exist
+        socket.emit("no-room");
+        return;
+      }
+      
       socket.join(gameCode);
       const clientsInRoom = socketRooms.get(gameCode);
 
