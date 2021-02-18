@@ -39,6 +39,12 @@ export const listenForJoinConfirmation = (gameCode, next) => {
   });
 }
 
+export const listenForNoRoom = next => {
+  if (!socket) return;
+
+  socket.on('no-room', next)
+}
+
 export const disconnectSocket = () => {
   if (socket) {
     socket.disconnect();

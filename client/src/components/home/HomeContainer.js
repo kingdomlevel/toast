@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AppTitle from './AppTitle';
 import GameConnect from './GameConnect';
@@ -20,17 +21,33 @@ const RuleButton = styled.button`
   
 `;
 
-function HomeContainer({history}) {
+const NoGameMsg = styled.p`
+  background-color: red;
+  width: fit-content;
+  margin: 5px;
+  font-size: 1.2em;
+`
+
+function HomeContainer({ history, location }) {
+  const [noRoomMsg, setNoRoomMsg] = useState(null);
+
+  useEffect(() => {
+    if (location.state && location.state.noRoom) {
+      setNoRoomMsg(`no game at ${location.state.noRoom}`);
+    }
+    history.replace();
+  }, [location.state, history]);
 
   return (
     <>
       <AppTitle />
       <RuleContainer>
-      <Link to="/rules">
-        <RuleButton>Rules</RuleButton>
-      </Link>
+        <Link to="/rules">
+          <RuleButton>Rules</RuleButton>
+        </Link>
       </RuleContainer >
-      <GameConnect history={history}/>
+      <NoGameMsg>{noRoomMsg}</NoGameMsg>
+      <GameConnect history={history} />
     </>
   );
 
