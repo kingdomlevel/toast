@@ -3,6 +3,10 @@ import AdminPanel from './AdminPanel';
 
 const PlayButton = styled.button`
   display: flex;
+  background-color: red;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto;
   width: 80px; 
   height: 20px;
 `;
@@ -15,6 +19,12 @@ const NameDisplay = styled.div`
   height: 30px;
 `;
 
+const AdminPanelContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  
+`;
+
 const LobbyContainer = ({showLobby, isHost, nickname}) => {
   if (!showLobby) return null;
 
@@ -24,7 +34,9 @@ const LobbyContainer = ({showLobby, isHost, nickname}) => {
       <p>Hello {nickname}</p>
     </NameDisplay>
       <PlayButton>PLAY</PlayButton>
+      <AdminPanelContainer>
       <AdminPanel isHost={isHost} nickname={nickname} />
+      </AdminPanelContainer>
     </>
   )
 };
