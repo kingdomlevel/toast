@@ -22,12 +22,11 @@ const NameDisplay = styled.div`
 const AdminPanelContainer = styled.div`
   display: flex;
   justify-content: center;
-  
+
 `;
 
 const LobbyContainer = ({showLobby, isHost, nickname}) => {
-  if (!showLobby) return null;
-
+  
   return (
     <>
     <NameDisplay>
@@ -35,7 +34,7 @@ const LobbyContainer = ({showLobby, isHost, nickname}) => {
     </NameDisplay>
       <PlayButton>PLAY</PlayButton>
       <AdminPanelContainer>
-      <AdminPanel isHost={isHost} nickname={nickname} />
+        <AdminPanel isHost={isHost} nickname={nickname} />
       </AdminPanelContainer>
     </>
   )

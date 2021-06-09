@@ -8,7 +8,6 @@ import styled from "styled-components";
 //set max players
 //allow latecomers 
 
-
 const AdminPanel = ({isHost, nickname}) => {
   const [roundNum, setRoundNum ] = useState(0);
   const [playerNum, setPlayerNum] = useState(0);
@@ -29,14 +28,12 @@ const AdminPanel = ({isHost, nickname}) => {
     setPlayerNum(buttonDir === 'more' ? playerNum + 1 : playerNum - 1);
   }
 
-  const handleLateComer = (buttonDir) => {
-    (buttonDir === 'more' ? setLateComers(!lateComers) : setLateComers(!lateComers));
+  const handleLateComer = (isHost, buttonDir) => {
+    (isHost && buttonDir === 'more' ? setLateComers(!lateComers) : setLateComers(!lateComers));
   }
 
   let lateDisplay = '';
   {lateComers ? lateDisplay = 'Yes' : lateDisplay = 'No'};
-
-  if (!isHost) return null;
 
   return (
     <>
@@ -44,27 +41,27 @@ const AdminPanel = ({isHost, nickname}) => {
       <SelectionsContainer>
         
         <RoundsContainer>
-          <RoundButton  buttonDir = 'less' disabled={roundNum <= 1} onClick={() => {handleRoundNum('less')}}>{'<'}</RoundButton>
+          <RoundButton  buttonDir = 'less' disabled={roundNum <= 1}  onClick={() => {handleRoundNum('less', isHost)}}>{'<'}</RoundButton>
           <RoundDisplay>{roundNum}</RoundDisplay>
-          <RoundButton buttonDir = 'more' disabled={roundNum >= 20} onClick={() => {handleRoundNum('more')}}>{'>'}</RoundButton>
+          <RoundButton buttonDir = 'more' disabled={roundNum >= 20} onClick={() => {handleRoundNum('more', isHost)}}>{'>'}</RoundButton>
         </RoundsContainer>
 
         <TimeContainer>
-          <TimeButton  buttonDir = 'less' disabled={timerNum <= 0} onClick={() => {handleTimerNum('less')}}>{'<'}</TimeButton>
-          <TimeDisplay>{timerNum}</TimeDisplay>
-          <TimeButton  buttonDir = 'more' disabled={timerNum >= 300} onClick={() => {handleTimerNum('more')}}>{'>'}</TimeButton>
+          <TimeButton  buttonDir = 'less' disabled={timerNum <= 0} onClick={() => {handleTimerNum('less', isHost)}}>{'<'}</TimeButton>
+          <TimeDisplay>{timerNum}s</TimeDisplay>
+          <TimeButton  buttonDir = 'more' disabled={timerNum >= 300} onClick={() => {handleTimerNum('more', isHost)}}>{'>'}</TimeButton>
         </TimeContainer>
 
         <MaxPlayerContainer>
-          <PlayersButton  buttonDir = 'less' disabled={playerNum <= 1} onClick={() => {handlePlayerNum('less')}}>{'<'}</PlayersButton>
+          <PlayersButton  buttonDir = 'less' disabled={playerNum <= 1} onClick={() => {handlePlayerNum('less', isHost)}}>{'<'}</PlayersButton>
           <PlayerDisplay>{playerNum}</PlayerDisplay>
-          <PlayersButton  buttonDir = 'less' disabled={playerNum >= 10} onClick={() => {handlePlayerNum('more')}}>{'>'}</PlayersButton>
+          <PlayersButton  buttonDir = 'less' disabled={playerNum >= 10} onClick={() => {handlePlayerNum('more', isHost)}}>{'>'}</PlayersButton>
         </MaxPlayerContainer>
 
         <LateContainer>
-          <LateButton buttonDir = 'more' disabled={!lateComers} onClick={() => {handleLateComer('more')}}>{'<'}</LateButton>
+          <LateButton buttonDir = 'more' disabled={!lateComers} onClick={() => {handleLateComer('more', isHost)}}>{'<'}</LateButton>
           <LateDisplay>{lateDisplay}</LateDisplay>
-          <LateButton buttonDir = 'less' disabled={lateComers} onClick={() => {handleLateComer('less')}}>{'>'}</LateButton>
+          <LateButton buttonDir = 'less' disabled={lateComers} onClick={() => {handleLateComer('less', isHost)}}>{'>'}</LateButton>
         </LateContainer>
       </SelectionsContainer>
     <HostContainer>
