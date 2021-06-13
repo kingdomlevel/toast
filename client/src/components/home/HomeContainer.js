@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import AppTitle from './AppTitle';
 import GameConnect from './GameConnect';
 import styled from 'styled-components';
+import RoomContainer from '../room/RoomContainer';
 
 const RuleContainer = styled.div`
   display: flex;

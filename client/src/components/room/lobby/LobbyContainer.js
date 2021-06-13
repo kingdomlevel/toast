@@ -6,9 +6,18 @@ const PlayButton = styled.button`
   background-color: red;
   align-items: center;
   justify-content: center;
+  border-radius: 40px;
   margin: 10px auto;
-  width: 80px; 
-  height: 20px;
+  width: 180px; 
+  height: 80px;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  margin: 0%;
 `;
 
 const NameDisplay = styled.div`
@@ -29,6 +38,7 @@ const LobbyContainer = ({showLobby, isHost, nickname}) => {
   
   return (
     <>
+    <Container>
     <NameDisplay>
       <p>Hello {nickname}</p>
     </NameDisplay>
@@ -36,6 +46,8 @@ const LobbyContainer = ({showLobby, isHost, nickname}) => {
       <AdminPanelContainer>
         <AdminPanel isHost={isHost} nickname={nickname} />
       </AdminPanelContainer>
+
+    </Container>
     </>
   )
 };

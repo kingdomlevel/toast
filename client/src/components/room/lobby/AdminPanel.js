@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import Button from '../../../components/BaseComponents/Button';
 
 //TASKS:
 //set number of rounds
@@ -37,39 +38,50 @@ const AdminPanel = ({isHost, nickname}) => {
 
   return (
     <>
-
+  <Container>
       <SelectionsContainer>
         
-        <RoundsContainer>
-          <RoundButton  buttonDir = 'less' disabled={roundNum <= 1}  onClick={() => {handleRoundNum('less', isHost)}}>{'<'}</RoundButton>
-          <RoundDisplay>{roundNum}</RoundDisplay>
-          <RoundButton buttonDir = 'more' disabled={roundNum >= 20} onClick={() => {handleRoundNum('more', isHost)}}>{'>'}</RoundButton>
-        </RoundsContainer>
+        <SelectionContainer>
+          <SelectionTitle>Round Count</SelectionTitle>
+          <AdminButton buttonDir = 'less' disabled={roundNum <= 1}  onClick={() => {handleRoundNum('less', isHost)}}>{'<'}</AdminButton>
+          <Display>{roundNum}</Display>
+          <AdminButton buttonDir = 'more' disabled={roundNum >= 20} onClick={() => {handleRoundNum('more', isHost)}}>{'>'}</AdminButton>
+        </SelectionContainer>
 
-        <TimeContainer>
-          <TimeButton  buttonDir = 'less' disabled={timerNum <= 0} onClick={() => {handleTimerNum('less', isHost)}}>{'<'}</TimeButton>
-          <TimeDisplay>{timerNum}s</TimeDisplay>
-          <TimeButton  buttonDir = 'more' disabled={timerNum >= 300} onClick={() => {handleTimerNum('more', isHost)}}>{'>'}</TimeButton>
-        </TimeContainer>
+        <SelectionContainer>
+          <SelectionTitle>Timer Count</SelectionTitle>
+          <AdminButton  buttonDir = 'less' disabled={timerNum <= 0} onClick={() => {handleTimerNum('less', isHost)}}>{'<'}</AdminButton>
+          <Display>{timerNum}s</Display>
+          <AdminButton  buttonDir = 'more' disabled={timerNum >= 300} onClick={() => {handleTimerNum('more', isHost)}}>{'>'}</AdminButton>
+        </SelectionContainer>
 
-        <MaxPlayerContainer>
-          <PlayersButton  buttonDir = 'less' disabled={playerNum <= 1} onClick={() => {handlePlayerNum('less', isHost)}}>{'<'}</PlayersButton>
-          <PlayerDisplay>{playerNum}</PlayerDisplay>
-          <PlayersButton  buttonDir = 'less' disabled={playerNum >= 10} onClick={() => {handlePlayerNum('more', isHost)}}>{'>'}</PlayersButton>
-        </MaxPlayerContainer>
+        <SelectionContainer>
+          <SelectionTitle>Max Players</SelectionTitle>
+          <AdminButton  buttonDir = 'less' disabled={playerNum <= 1} onClick={() => {handlePlayerNum('less', isHost)}}>{'<'}</AdminButton>
+          <Display>{playerNum}</Display>
+          <AdminButton  buttonDir = 'less' disabled={playerNum >= 10} onClick={() => {handlePlayerNum('more', isHost)}}>{'>'}</AdminButton>
+        </SelectionContainer>
 
-        <LateContainer>
-          <LateButton buttonDir = 'more' disabled={!lateComers} onClick={() => {handleLateComer('more', isHost)}}>{'<'}</LateButton>
-          <LateDisplay>{lateDisplay}</LateDisplay>
-          <LateButton buttonDir = 'less' disabled={lateComers} onClick={() => {handleLateComer('less', isHost)}}>{'>'}</LateButton>
-        </LateContainer>
+        <SelectionContainer>
+          <SelectionTitle>Accept Late Comers?</SelectionTitle>
+          <AdminButton buttonDir = 'more' disabled={!lateComers} onClick={() => {handleLateComer('more', isHost)}}>{'<'}</AdminButton>
+          <Display>{lateDisplay}</Display>
+          <AdminButton buttonDir = 'less' disabled={lateComers} onClick={() => {handleLateComer('less', isHost)}}>{'>'}</AdminButton>
+        </SelectionContainer>
       </SelectionsContainer>
     <HostContainer>
       <HostDisplay>{nickname} is the host.</HostDisplay>
     </HostContainer>
+  </Container>
     </>
   )
 };
+
+  const Container = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  `;
 
   const HostContainer = styled.div`
     display: flex;
@@ -86,113 +98,69 @@ const AdminPanel = ({isHost, nickname}) => {
   const HostDisplay = styled.p`
     font-size: 30px;
   `;
+
+  const SelectionTitle = styled.h4`
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    border: 3px solid black;
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 20px;
+    color: black;
+  `;
   
   const SelectionsContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border-radius: 30px;
     width: 400px;
     height: 400px;
     background-color: red;
     opacity: 0.5;
     padding: 10px;
+    margin: 25px;
   `;
-  
-  const RoundsContainer = styled.div`
+
+  const SelectionContainer = styled.div`
     display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
     margin: 5px;
     width: 350;
-    height: 40px;
+    height: 60px;
     background-color: white;
-  `;
+  `;  
 
-  const RoundButton = styled.button`
-    display: flex;
-    width: 80px; 
-    height: 20px;
-  `;
+  const AdminButton = styled(Button)`
+  display: flex;
+  width: 80px;
+  justify-content: center;
+  font-size: 30px;
+  color: yellow;
+  align-items: center;
+  height: 3.5rem;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 10px;
 
-  const RoundDisplay = styled.div`
+  `;
+ 
+ const Display = styled.div`
     display: flex;
     justify-content: center;
     font-size: 16px;
     width: 80px; 
     height: 20px;
-
+    
   `;
-  
-  const TimeContainer = styled.div`
-    display: flex;
-    padding: 10px;
-    margin: 5px;
-    width: 350;
-    height: 40px;
-    background-color: white;
-  `;
-
-  const TimeButton = styled.button`
-    display: flex;
-    width: 80px; 
-    height: 20px;
-  `;
-
-  const TimeDisplay = styled.div`
-    display: flex;
-    justify-content: center;
-    font-size: 16px;
-    width: 80px; 
-    height: 20px;
-  `;
-  
-  const MaxPlayerContainer = styled.div`
-    display: flex;
-    padding: 10px;
-    margin: 5px;
-    width: 350;
-    height: 40px;
-    background-color: white;
-  `;
-
-  const PlayersButton = styled.button`
-    display: flex;
-    width: 80px; 
-    height: 20px;
-  `;
-
-  const PlayerDisplay = styled.div`
-    display: flex;
-    justify-content: center;
-    font-size: 16px;
-    width: 80px; 
-    height: 20px;
-  `;
-  
-  const LateContainer = styled.div`
-    display: flex;
-    padding: 10px;
-    margin: 5px;
-    width: 350;
-    height: 40px;
-    background-color: white;
-  `;
-
-  const LateButton = styled.button`
-    display: flex;
-    width: 80px; 
-    height: 20px;
-  `;
-
-  const LateDisplay = styled.div`
-    display: flex;
-    justify-content: center;
-    font-size: 16px;
-    width: 80px; 
-    height: 20px;
-  `;
-
-
-
 
 export default AdminPanel;
 

@@ -1,4 +1,3 @@
-// import mongoose from 'mongoose';
 require('dotenv').config();
 const mongoose = require('mongoose');
 const connection = {};
@@ -16,7 +15,7 @@ async function connectDb() {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
-    console.log('DB CONNECTSHEEYAWN')
+    console.log('Database Connected 🚀')
     connection.isConnected = db.connections[0].readyState;
 }
  

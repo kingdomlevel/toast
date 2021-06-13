@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import LobbyContainer from './lobby/LobbyContainer';
 import { generateNickname } from '../../utils/randomWords';
 import { initSocket, listenForJoinConfirmation, listenForNoRoom } from '../../utils/socket-helper';
+import styled from 'styled-components';
+
 
 const RoomContainer = ({roomCode, isHost}) => {
   const [nickname, setNickname] = useState(generateNickname());
-  const [, setSocketId] = useState(null);
+  const [socketId, setSocketId] = useState(null);
   const [redirect, setRedirect] = useState(false);
   const [showLobby, setShowLobby] = useState(false);
 
@@ -46,6 +48,9 @@ const RoomContainer = ({roomCode, isHost}) => {
 
   return (
     <>
+    <Link to={'/'}>
+      <BackButton>BACK</BackButton>
+    </Link>
       <LobbyContainer 
         showLobby={showLobby} 
         isHost={isHost}
@@ -55,5 +60,12 @@ const RoomContainer = ({roomCode, isHost}) => {
     </>
   )
 };
+
+const BackButton = styled.button`
+  width: 90px;
+  height: 30px;
+  color: black;
+  background-color: #a8dadc;
+`;
 
 export default RoomContainer;
